@@ -1,0 +1,122 @@
+<div class="row">
+    <div class="col-lg"></div>
+    <div class="col-lg-4" id="form">
+        <h2 id="form-title">Formulario de registro del usuario</h2>
+        <div class="alert alert-success" role="alert" *ngIf="operation === 1">
+            {{ message }}
+        </div>
+        <div class="alert alert-danger" role="alert" *ngIf="operation === 3">
+            {{ message }}
+        </div>
+        <div class="alert alert-warning" role="alert" *ngIf="operation === 2">
+            {{ message }}
+        </div>
+        <form [formGroup]="form" (submit)="save()">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="name" class="form-control" formControlName="name" id="name" aria-describedby="nameHelp" [ngClass]="{
+            'is-valid': form.get('name').valid && form.get('name').dirty,
+            'is-invalid':
+              form.get('name').invalid &&
+              (form.get('name').dirty || form.get('name').touched)
+          }" />
+                <div *ngIf="
+            form.get('name').invalid &&
+            (form.get('name').dirty || form.get('name').touched)
+          " class="invalid-feedback">
+                    <span *ngIf="form.get('name').hasError('required')">Name necesario</span
+          >
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="lastname">Lastname</label>
+        <input
+          type="lastname"
+          class="form-control"
+          formControlName="lastname"
+          id="lastname"
+          aria-describedby="lastnameHelp"
+          [ngClass]="{
+            'is-valid':
+              form.get('lastname').valid && form.get('lastname').dirty,
+            'is-invalid':
+              form.get('lastname').invalid &&
+              (form.get('lastname').dirty || form.get('lastname').touched)
+          }"
+        />
+        <div
+          *ngIf="
+            form.get('lastname').invalid &&
+            (form.get('lastname').dirty || form.get('lastname').touched)
+          "
+          class="invalid-feedback"
+        >
+          <span *ngIf="form.get('lastname').hasError('required')"
+            >Lastname necesario</span
+          >
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email address</label>
+        <input
+          type="email"
+          class="form-control"
+          formControlName="email"
+          id="email"
+          aria-describedby="emailHelp"
+          [ngClass]="{
+            'is-valid': form.get('email').valid && form.get('email').dirty,
+            'is-invalid':
+              form.get('email').invalid &&
+              (form.get('email').dirty || form.get('email').touched)
+          }"
+        />
+        <div
+          *ngIf="
+            form.get('email').invalid &&
+            (form.get('email').dirty || form.get('email').touched)
+          "
+          class="invalid-feedback"
+        >
+          <span *ngIf="form.get('email').hasError('required')"
+            >Email necesario</span
+          >
+          <span *ngIf="form.get('email').hasError('pattern')"
+            >Email no correcto</span
+          >
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          formControlName="password"
+          id="password"
+          [ngClass]="{
+            'is-valid':
+              form.get('password').valid && form.get('password').dirty,
+            'is-invalid':
+              form.get('password').invalid &&
+              (form.get('password').dirty || form.get('password').touched)
+          }"
+        />
+        <div
+          *ngIf="
+            form.get('password').invalid &&
+            (form.get('password').dirty || form.get('password').touched)
+          "
+          class="invalid-feedback"
+        >
+          <span *ngIf="form.get('password').hasError('required')"
+            >Password necesario</span
+          >
+        </div>
+      </div>
+      <button [disabled]="form.invalid" type="submit" class="btn btn-primary">
+        Submit
+      </button>
+    </form>
+  </div>
+  <div class="col-lg"></div>
+</div>

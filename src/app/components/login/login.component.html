@@ -1,0 +1,61 @@
+<div class="row" *ngIf="show">
+    <div class="col-lg"></div>
+    <div class="col-lg-4" id="form">
+        <div class="alert alert-warning" role="alert" *ngIf="error">
+            Los credenciales introducidos no son los correctos
+        </div>
+        <h2 id="form-title">Formulario de inicio de sesi&oacute;n</h2>
+        <form [formGroup]="form" (submit)="save()">
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" class="form-control" formControlName="email" id="email" aria-describedby="emailHelp" [ngClass]="{
+            'is-valid': form.get('email').valid && form.get('email').dirty,
+            'is-invalid':
+              form.get('email').invalid &&
+              (form.get('email').dirty || form.get('email').touched)
+          }" />
+                <div *ngIf="
+            form.get('email').invalid &&
+            (form.get('email').dirty || form.get('email').touched)
+          " class="invalid-feedback">
+                    <span *ngIf="form.get('email').hasError('required')">Email necesario</span
+          >
+          <span *ngIf="form.get('email').hasError('pattern')"
+            >Email no correcto</span
+          >
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          formControlName="password"
+          id="password"
+          [ngClass]="{
+            'is-valid':
+              form.get('password').valid && form.get('password').dirty,
+            'is-invalid':
+              form.get('password').invalid &&
+              (form.get('password').dirty || form.get('password').touched)
+          }"
+        />
+        <div
+          *ngIf="
+            form.get('password').invalid &&
+            (form.get('password').dirty || form.get('password').touched)
+          "
+          class="invalid-feedback"
+        >
+          <span *ngIf="form.get('password').hasError('required')"
+            >Password necesario</span
+          >
+        </div>
+      </div>
+      <button [disabled]="form.invalid" type="submit" class="btn btn-primary">
+        Submit
+      </button>
+    </form>
+  </div>
+  <div class="col-lg"></div>
+</div>
